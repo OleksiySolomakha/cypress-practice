@@ -20,7 +20,7 @@ let invalidPasswords = [
     'thisPasswordIsToolong12345678'
   ];
 
-describe('Should show errors for Password field if: ',() => {
+describe('Should show errors for Re-password field if: ',() => {
     beforeEach(() => {
         cy.visit('https://qauto.forstudy.space/', { 
             auth: {
