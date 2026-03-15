@@ -25,23 +25,27 @@ Cypress.Commands.add('createCarBMW', (miles = 123) => {
     
   cy.contains('button', 'Add car').click();
   cy.get('.modal-title').contains('Add a car');
-  cy.get('select[addCarBrand]', { timeout: 1000 }).select('BMW').should('have.value', '1: 2');
-  cy.get('select[addCarModel]', { timeout: 1000 }).select('3').should('have.value', '5: 6');
-  cy.get('#addCarMileage').fill(miles);
+  cy.get('select[id="addCarBrand"]', { timeout: 1000 }).select('BMW').should('have.value', '1: 2');
+  cy.get('select[id="addCarModel"]', { timeout: 1000 }).select('3').should('have.value', '5: 6');
+  cy.get('#addCarMileage').type(miles);
 
-  cy.contains('button', 'Add').click();
-  cy.get('.car_name h2').contains('BMW 3');
+  cy.contains('button', /^Add$/).click();
+  cy.contains('BMW 3');
 })
 
 Cypress.Commands.add('addBMWFuelExpense', (miles = 100000, liters = 15, literPrice = 81.89) => {
     
   cy.contains('button', 'Add fuel expense').click();
   cy.get('.modal-title').contains('Add an expense');
-  cy.get('#addExpenseMileage', { timeout: 1000 }).fill(miles);
-  cy.get('#addExpenseLiters', { timeout: 1000 }).fill(liters);
-  cy.get('#addExpenseLiters', { timeout: 1000 }).fill(literPrice);
+  cy.get('.icon-calendar').click();
+  // cy.get('select[title="Select year"]', { timeout: 1000 }).select('2025').should('have.value', '2025');
+  cy.contains('[role="gridcell"]' ,'15').click();
+  cy.get('#addExpenseMileage', { timeout: 1000 }).clear();
+  cy.get('#addExpenseMileage', { timeout: 1000 }).type(miles);
+  cy.get('#addExpenseLiters', { timeout: 1000 }).type(liters);
+  cy.get('#addExpenseTotalCost', { timeout: 1000 }).type(literPrice);
 
-  cy.contains('button', 'Add').click();
+  cy.contains('button', /^Add$/).click();
   cy.get('h1').contains('Fuel expenses');
   cy.contains(miles);
   cy.contains(liters);
@@ -49,12 +53,12 @@ Cypress.Commands.add('addBMWFuelExpense', (miles = 100000, liters = 15, literPri
 })
 
 Cypress.Commands.add('returnToGarage', () => {
-  cy.contains('a[href="/panel/garage"]').click();
+  cy.contains('.header-link', 'Garage').click();
   cy.get('h1').contains('Garage');
 })
 
 Cypress.Commands.add('deleteCreatedCar', () => {
-  cy.get('button .car_edit').click();
+  cy.get('button.car_edit').click();
   cy.get('.modal-title').contains('Edit a car');
   cy.contains('button', 'Remove car').click();
 
@@ -62,7 +66,7 @@ Cypress.Commands.add('deleteCreatedCar', () => {
   cy.contains('button', 'Remove').click();
 
   cy.get('h1').contains('Garage')
-  cy.get('button .car_edit').should('not.exist');
+  cy.get('button.car_edit').should('not.exist');
 })
 
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {

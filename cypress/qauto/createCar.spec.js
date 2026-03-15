@@ -1,10 +1,10 @@
 let startMiles = 1234;
-let runMiles = 432;
+let runMiles = 1235;
 let liters = 15;
 let price = 100;
 
 describe('Create a new car for user',() => {
-    beforeEach(() => {
+    before(() => {
         cy.visit('/', { 
             auth: {
                 username: 'guest',
@@ -14,20 +14,13 @@ describe('Create a new car for user',() => {
         cy.login();
     });
 
-    it('Create car', () => {
+    it('Create, edit and delete a car, BMW for example', () => {
         cy.createCarBMW(startMiles);
-    });
-
-    it('Added fuel expense for created car', () => {
         cy.addBMWFuelExpense(runMiles, liters, price);
-    });
-
-    it('Check delete created car', () => {
         cy.returnToGarage();
-        cy.deleteCreatedCar();
-    });
 
-    it('See users page and Log Out', () => {
+        cy.deleteCreatedCar();
+
         cy.get('a[routerlink="garage"]').should('be.visible');
         cy.get('#userNavDropdown').click();
         cy.contains('button', 'Logout').click();

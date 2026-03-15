@@ -12,7 +12,7 @@ function getEnvConfig(configFile) {
 
 module.exports = defineConfig({
   watchForFileChanges: false,
-  allowCypressEnv: false,
+  allowCypressEnv: true,
   defaultCommandTimeout: 10000,
   viewportWidth: 1280,
   viewportHeight: 720,

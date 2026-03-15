@@ -15,10 +15,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^0.0.1"
-  },
   "devDependencies": {
+    "cypress": "^15.12.0",
     "cypress-iframe": "^1.0.1",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.1",
