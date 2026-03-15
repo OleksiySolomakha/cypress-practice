@@ -1,13 +1,18 @@
 const { defineConfig } = require("cypress");
-
+const path = require("path");
 
 function getEnvConfig(configFile) {
-  return require(`./cypress.env.${configFile}.js`);
+  try {
+    return require(`./cypress.env.${configFile}.js`);
+  } catch {
+    console.warn(`Env file cypress.env.${configFile}.js not found, using defaults.`);
+    return {};
+  }
 }
 
-module.exports = {
+module.exports = defineConfig({
   watchForFileChanges: false,
-  allowCypressEnv: true,
+  allowCypressEnv: false,
   defaultCommandTimeout: 10000,
   viewportWidth: 1280,
   viewportHeight: 720,
@@ -24,22 +29,18 @@ module.exports = {
 
   e2e: {
     specPattern: '**/*.spec.js',
-
     setupNodeEvents(on, config) {
-
       const configFile = config.env.configFile || 'stage';
-
       const envConfig = getEnvConfig(configFile);
 
-      // підміняємо baseUrl
-      config.baseUrl = envConfig.baseUrl;
+      if (envConfig.baseUrl) config.baseUrl = envConfig.baseUrl;
 
-      // додаємо env змінні
       config.env = {
         ...config.env,
         ...envConfig
       };
+
       return config;
     },
   },
-};
+});
