@@ -23,7 +23,7 @@ let invalidEmails = [
 
 describe('Should show errors for Email field if: ',() => {
     beforeEach(() => {
-        cy.visit('https://qauto.forstudy.space/', { 
+        cy.visit('/', { 
             auth: {
                 username: 'guest',
                 password: 'welcome2qauto'

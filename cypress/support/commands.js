@@ -10,13 +10,13 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add('login', (email = 'solomakhaoleksiy+os1@gmail.com', password = 'ValidPass1234') => {
+Cypress.Commands.add('login', (userEmail = Cypress.env('userEmail') || 'solomakhaoleksiy+os1@gmail.com', userPassword = Cypress.env('userPassword') || 'ValidPass1234') => {
     
     cy.get('.header_signin').click();
     cy.get('.modal-title').should('be.visible');
 
-    cy.get('#signinEmail').type(email);
-    cy.get('#signinPassword').type(password, { sensitive: true });
+    cy.get('#signinEmail').type(userEmail);
+    cy.get('#signinPassword').type(userPassword, { sensitive: true });
     cy.contains('button', 'Login').click();
     cy.get('h1').contains('Garage')
 })

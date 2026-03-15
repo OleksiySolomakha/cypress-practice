@@ -4,14 +4,25 @@
   "description": "My cypress practice",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "open:stage": "npx cypress open --env configFile=stage",
+    "open:dev": "npx cypress open --env configFile=dev",
+    "cypress:run:dev": "npx cypress run --env configFile=dev",
+    "cypress:run:stage": "npx cypress run --env configFile=stage",
+    "report:merge": "node generate-report.js",
+    "clean:report": "rimraf cypress/report/*",
+    "run:stage:report": "npm run clean:report && run cypress:run:stage || true && npm run report:merge",
+    "run:dev:report": "npm run clean:report && npm run cypress:run:dev || true && npm run report:merge"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^15.10.0"
+    "cypress": "^0.0.1"
   },
   "devDependencies": {
-    "cypress-iframe": "^1.0.1"
+    "cypress-iframe": "^1.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2",
+    "rimraf": "^6.1.3"
   }
 }
