@@ -3,7 +3,7 @@ let runMiles = 1235;
 let liters = 15;
 let price = 100;
 
-describe('Create a new car for user',() => {
+describe('Check adding fuel expenses to new car',() => {
     before(() => {
         cy.visit('/', { 
             auth: {
@@ -14,8 +14,10 @@ describe('Create a new car for user',() => {
         cy.login();
     });
 
-    it('Create and delete a new car, BMW for example', () => {
+    it('Add fuel expenses for a car', () => {
         cy.createCarBMW(startMiles);
+        cy.addBMWFuelExpense(runMiles, liters, price);
+        cy.returnToGarage();
 
         cy.deleteCreatedCar();
 

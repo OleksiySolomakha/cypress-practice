@@ -39,7 +39,7 @@ Cypress.Commands.add('addBMWFuelExpense', (miles = 100000, liters = 15, literPri
   cy.get('.modal-title').contains('Add an expense');
   cy.get('.icon-calendar').click();
   // cy.get('select[title="Select year"]', { timeout: 1000 }).select('2025').should('have.value', '2025');
-  cy.contains('[role="gridcell"]' ,'15').click();
+  cy.get('.ngb-dp-today').click();
   cy.get('#addExpenseMileage', { timeout: 1000 }).clear();
   cy.get('#addExpenseMileage', { timeout: 1000 }).type(miles);
   cy.get('#addExpenseLiters', { timeout: 1000 }).type(liters);
