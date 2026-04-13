@@ -1,16 +1,10 @@
+import HomePage from '../pom/pages/HomePage';
+
 let startMiles = 1234;
-let runMiles = 1235;
-let liters = 15;
-let price = 100;
 
 describe('Create a new car for user',() => {
     before(() => {
-        cy.visit('/', { 
-            auth: {
-                username: 'guest',
-                password: 'welcome2qauto'
-            }
-        })
+        HomePage.open();
         cy.login();
     });
 
@@ -19,8 +13,7 @@ describe('Create a new car for user',() => {
 
         cy.deleteCreatedCar();
 
-        cy.get('a[routerlink="garage"]').should('be.visible');
-        cy.get('#userNavDropdown').click();
-        cy.contains('button', 'Logout').click();
+        HomePage.GarageLinkButton.should('be.visible');
+        HomePage.LogoutLink.click();
     });
 });

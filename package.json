@@ -10,8 +10,8 @@
     "cypress:run:stage": "npx cypress run --env configFile=stage",
     "report:merge": "node generate-report.js",
     "clean:report": "rimraf cypress/report/*",
-    "open:stage:report": "npm run clean:report && run cypress:run:stage || true && npm run report:merge",
-    "open:dev:report": "npm run clean:report && npm run cypress:run:dev || true && npm run report:merge"
+    "gen:stage:report": "npm run clean:report && npm run cypress:run:stage || true && npm run report:merge",
+    "gen:dev:report": "npm run clean:report && npm run cypress:run:dev || true && npm run report:merge"
   },
   "author": "",
   "license": "ISC",

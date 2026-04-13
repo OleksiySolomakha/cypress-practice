@@ -1,4 +1,3 @@
 node_modules
 cypress/report
-cypress/screenshots
 .DS_Store
