@@ -12,6 +12,14 @@ class HomePage {
         return cy.get('a[routerlink="garage"]');
     }
 
+    get UserNavDropdown() {
+        return cy.get('#userNavDropdown');
+    }
+
+    get ProfileLink() {
+        return cy.contains('a[routerlink="profile"]','Profile');
+    }
+
     get LogoutLink() {
         return cy.contains('a.sidebar_btn','Log out');
     }
