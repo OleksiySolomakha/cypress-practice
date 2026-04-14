@@ -23,7 +23,7 @@ describe('Check API requests for Expenses page',() => {
         cy.login();
     });
 
-    it('Open profile page', () => {
+    it('Change profile name', () => {
         cy.intercept('GET','https://qauto.forstudy.space/api/users/profile', userProfileData);
         
         HomePage.ProfileLink.click();
