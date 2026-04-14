@@ -1,6 +1,6 @@
 describe('Registration new user',() => {
     beforeEach(() => {
-        cy.visit('https://qauto.forstudy.space/', { 
+        cy.visit('/', { 
             auth: {
                 username: 'guest',
                 password: 'welcome2qauto'

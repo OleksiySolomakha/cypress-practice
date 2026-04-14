@@ -22,7 +22,7 @@ let invalidPasswords = [
 
 describe('Should show errors for Re-password field if: ',() => {
     beforeEach(() => {
-        cy.visit('https://qauto.forstudy.space/', { 
+        cy.visit('/', { 
             auth: {
                 username: 'guest',
                 password: 'welcome2qauto'
